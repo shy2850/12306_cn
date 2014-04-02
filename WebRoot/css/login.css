@@ -1,0 +1,112 @@
+html,
+body,
+div,
+span,
+a,
+em,
+table,
+tr,
+th,
+td,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+body {
+  background: url("../images/bg.png") #272822;
+}
+.main {
+  width: 380px;
+  margin: 50px auto;
+  position: relative;
+}
+.main .login-panel {
+  height: 200px;
+  background: url("login/login-panel.png");
+}
+.main .login-panel .line-item {
+  line-height: 44px;
+  height: 44px;
+  width: 320px;
+  margin: 0 auto;
+  position: relative;
+  overflow: visible;
+}
+.main .login-panel .line-item input {
+  height: 34px;
+  line-height: 34px;
+  padding: 0 6px;
+  width: 300px;
+  border-radius: 7px;
+  border: 1px solid #999966;
+}
+.main .login-panel .line-item input:focus {
+  outline: none;
+}
+.main .login-panel .line-item em.tip {
+  display: block;
+  width: 48px;
+  height: 40px;
+  background: url("login/login-sprite.png") no-repeat 1000px 1000px;
+  position: absolute;
+  right: -36px;
+  top: 2px;
+}
+.main .login-panel .line-item em.tip.correct {
+  background-position: 0 -2px;
+}
+.main .login-panel .line-item em.tip.error {
+  background-position: 0 -72px;
+}
+.main .login-panel .fm-title {
+  width: 290px;
+  height: 36px;
+  padding: 30px 0 0 30px;
+  font: bold 18px/44px "microsoft yahei";
+  color: #5a4730;
+  background: url("login/login-sprite.png") no-repeat -170px 32px;
+}
+.main .login-handle {
+  line-height: 50px;
+  height: 50px;
+  padding: 90px 0 20px;
+  width: 100%;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  background: url("login/login-handle.png") left bottom;
+  z-index: -1;
+}
+.main .login-handle .btn-submit {
+  width: 114px;
+  height: 44px;
+  border: 0;
+  background: url("login/login-sprite.png") no-repeat 2px -197px;
+  text-indent: -9999em;
+  float: right;
+  margin-right: 30px;
+  cursor: pointer;
+}
+.main .login-handle .btn-switch {
+  display: block;
+  height: 44px;
+  background: url("login/login-sprite.png") no-repeat -150px -80px;
+  margin-left: 32px;
+  float: left;
+  padding-left: 50px;
+  color: #efdcc1;
+  font: bold 12px/44px "Arial";
+  cursor: pointer;
+}
+.main .login-handle .switch-on {
+  background-position: -150px -160px;
+}
