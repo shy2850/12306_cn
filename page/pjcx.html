@@ -1,0 +1,78 @@
+$belong[frame.html]
+	<div class="content">
+		<div class="pjcx">
+			<div class="sear-box">
+				<form id="queryLeftForm" method="get">
+					<div class="s-info">
+						<ul>
+							<li>
+								<span class="label">
+									<label>出发地</label>
+								</span>
+								<div class="inp-w">
+									<input type="text" id="fromStation" class="inp-txt"  placeholder="简拼/全拼/汉字">
+									<span class="i-city"></span>
+								</div>
+							</li>
+							<li class="i-change" id="change_station" ></li>
+							<li>
+								<span class="label">
+									<label>目的地</label>
+								</span>
+								<div class="inp-w">
+									<input type="text" id="toStationText" class="inp-txt"  placeholder="简拼/全拼/汉字">
+									<span class="i-city"></span>
+								</div>
+							</li>
+							<li>
+								<span class="label">
+									<label>出发日</label>
+								</span>
+								<div class="inp-w">
+									<input type="text" class="inp-txt Wdate" placeholder="yyyy-MM-dd" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})" value="">
+								</div>
+							</li>
+							<li class="item-code">
+								<span class="label">验证码</span>
+							 	<div class="inp-w yzm">
+							 		<input class="inp-txt randCode" id="randCode"></input>
+							 		<span class="img"><img src="#" alt="验证码"></span>
+							 		<span class="i-fresh"></span>
+							 	</div>
+							</li>
+						</ul>
+					</div>
+					<div class="btn-area">
+						<a href="#" id="query_titcket" class="btn">查询</a>
+					</div>
+				</form>
+			</div>
+			<div class="t-list" id="t-list">
+				<table>
+					<tr class="th" id="float">
+						<th width="90" colspan="1" rowspan="1">车次</th>
+						<th width="100" colspan="1" rowspan="1">出发站<br clear="none">到达站</th>
+						<th width="82" colspan="1" rowspan="1" id="startendtime">
+							<span class="b1" id="s_time" style="cursor: pointer;">出发时间</span><br>
+							<span class="b2" id="r_time" style="cursor: pointer;">到达时间</span>
+						</th>
+						<th width="82" colspan="1" rowspan="1">
+							<span class="b3" id="l_s" style="cursor: pointer;">历时</span>
+						</th>
+						<th width="49" colspan="1" rowspan="1">商务座</th>
+						<th width="49" colspan="1" rowspan="1">特等座</th>
+						<th width="49" colspan="1" rowspan="1">一等座</th>
+						<th width="49" colspan="1" rowspan="1">二等座</th>
+						<th width="49" colspan="1" rowspan="1">高级<br clear="none">软卧</th>
+						<th width="49" colspan="1" rowspan="1">软卧</th>
+						<th width="49" colspan="1" rowspan="1">硬卧</th>
+						<th width="49" colspan="1" rowspan="1">软座</th>
+						<th width="49" colspan="1" rowspan="1">硬座</th>
+						<th width="49" colspan="1" rowspan="1">无座</th>
+						<th width="49" colspan="1" rowspan="1">其他</th>
+						<th class="last" colspan="1" rowspan="1">备注</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>

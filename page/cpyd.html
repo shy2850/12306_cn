@@ -1,0 +1,309 @@
+$belong[frame.html]
+<style>
+	.ui-autocomplete{
+		max-height: 200px;
+		overflow-y: scroll; 
+	}
+</style>
+	<div class="content">
+		<div class="cpyd">
+			<div class="sear-box">
+				<form id="queryLeftForm" method="get">
+					<div class="dfc">
+						<ul>
+							<li>
+								<input type="radio" name="dfc" id="dc" class="radio" value="dc" checked="checked">
+								<label id="dc_label" calss="cursor">单程</label>
+							</li>
+							<li>
+								<input type="radio" name="dfc" id="wf" class="radio" value="wf" >
+								<label id="wf_label" calss="cursor">往返</label>
+							</li>
+						</ul>
+					</div>
+					<div class="s-info">
+						<ul>
+							<li>
+								<span class="label">
+									<label>出发地</label>
+								</span>
+								<div class="inp-w">
+									<input type="text" id="fromStationText" class="inp-txt" value="北京"  placeholder="简拼/汉字">
+									<input type="hidden" id="fromStation" value="2">
+									<span class="i-city"></span>
+								</div>
+							</li>
+							<li class="i-change" id="change_station" ></li>
+							<li>
+								<span class="label">
+									<label>目的地</label>
+								</span>
+								<div class="inp-w">
+									<input type="text" id="toStationText" class="inp-txt" value="银川"  placeholder="简拼/汉字">
+									<input type="hidden" id="toStation" value="70">
+									<span class="i-city"></span>
+								</div>
+							</li>
+							<li>
+								<span class="label">
+									<label>出发日</label>
+								</span>
+								<div class="inp-w">
+									<input type="text" class="inp-txt Wdate" id="beginDate" name="beginDate" placeholder="yyyy-MM-dd" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" value="" >
+								</div>
+							</li>
+							<li id="fc">
+								<span class="label">
+									<label>返程日</label>
+								</span>
+								<div class="inp-w">
+									<input type="text" class="inp-txt Wdate" placeholder="yyyy-MM-dd"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" value="">
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="quick-s">
+						<ul>
+							<li>
+								<input type="radio" name="radio" class="radio" id="sf1" checked="checked">
+								<label class="cursor" id="sf1_label">普通</label>
+							</li>
+							<li>
+								<input type="radio" name="radio" class="radio" id="sf2">
+								<label class="cursor" id="sf2_label">学生</label>
+							</li>
+						</ul>
+						<div class="btn_area">
+							<a href="#" class="btn" id="query_titcket">查询</a>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="sear-result" id="sear-result">
+				<span class="kyd">
+					<input type="checkbox" class="check" id="avail_ticket"></input>
+					<label>显示全部可预订车次</label>
+				</span>
+				<p>
+					<strong id="from-to-show"></strong>
+				</p>
+			</div>
+			<div class="t-list" id="t-list">
+			</div>
+		</div>
+	</div>
+
+<script type="template/html" id="tmp-cp-list" data-target="#t-list" data-type="jsonp" data-url="http://localhost:8080/12306_cn/trainAction$list">
+	<table>
+		<thead>
+			<tr class="th">
+				<th width="90">车次</th>
+				<th width="100">出发站<br clear="none">到达站</th>
+				<th width="82" id="startendtime">
+					<span class="b1" id="s_time" style="cursor: pointer;">出发时间</span><br>
+					<span class="b2" id="r_time" style="cursor: pointer;">到达时间</span>
+				</th>
+				<th width="82">
+					<span class="b3" id="l_s" style="cursor: pointer;">历时</span>
+				</th>
+				<th width="49">商务座</th>
+				<th width="49">特等座</th>
+				<th width="49">一等座</th>
+				<th width="49">二等座</th>
+				<th width="49">高级<br clear="none">软卧</th>
+				<th width="49">软卧</th>
+				<th width="49">硬卧</th>
+				<th width="49">软座</th>
+				<th width="49">硬座</th>
+				<th width="49">无座</th>
+				<th width="49">其他</th>
+				<th class="last">备注</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each info}}
+			<tr onclick="$(this).next().toggle();">
+				<td>{{checi}}</td>
+				<td>{{start_station.zh_name}}/{{end_station.zh_name}}</td>
+				<td>{{start_time}}/{{arrive_time}}</td>
+				<td>{{lishi}}</td>
+				<td data-val="swz_num" data-show="商务座" {{#if swz_num}}class="ticket"{{/if}}>{{swz_num}}</td>
+				<td data-val="td_num" data-show="特等座" {{#if td_num}}class="ticket"{{/if}}>{{td_num}}</td>
+				<td data-val="yd_num" data-show="一等座" {{#if yd_num}}class="ticket"{{/if}}>{{yd_num}}</td>
+				<td data-val="ed_num" data-show="二等座" {{#if ed_num}}class="ticket"{{/if}}>{{ed_num}}</td>
+				<td data-val="gr_num" data-show="高级" {{#if gr_num}}class="ticket"{{/if}}>{{gr_num}}</td>
+				<td data-val="rw_num" data-show="软卧" {{#if rw_num}}class="ticket"{{/if}}>{{rw_num}}</td>
+				<td data-val="yw_num" data-show="硬卧" {{#if yw_num}}class="ticket"{{/if}}>{{yw_num}}</td>
+				<td data-val="rz_num" data-show="软座" {{#if rz_num}}class="ticket"{{/if}}>{{rz_num}}</td>
+				<td data-val="yz_num" data-show="硬座" {{#if yz_num}}class="ticket"{{/if}}>{{yz_num}}</td>
+				<td data-val="wz_num" data-show="无座" {{#if wz_num}}class="ticket"{{/if}}>{{wz_num}}</td>
+				<td>{{other}}</td>
+				<td><a href="javascript:void(0);" class="fm-button btn-book" data-id="{{id}}">预订</a></td>
+			</tr>
+			<tr class="hidden">
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td>--</td>
+				<td class="swz_num">{{swz_price}}</td>
+				<td class="td_num">{{td_price}}</td>
+				<td class="yd_num">{{yd_price}}</td>
+				<td class="ed_num">{{ed_price}}</td>
+				<td class="gr_num">{{gr_price}}</td>
+				<td class="rw_num">{{rw_price}}</td>
+				<td class="yw_num">{{yw_price}}</td>
+				<td class="rz_num">{{rz_price}}</td>
+				<td class="yz_num">{{yz_price}}</td>
+				<td class="wz_num">{{wz_price}}</td>
+				<td>--</td>
+				<td>--</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+	<span class="totalPage">{{info/length}}</span>
+</script>
+
+<script>
+	
+
+	//预订按钮操作
+	$('#t-list').on('click','.btn-book',function(e){
+		if( !window.loginUser ){
+			$('#btn-login').trigger('click');
+		}else{
+			//修改车票id
+			var current = $(this);
+			var ticketOptinos = [];
+			var all_tickets = $(this).parent().siblings('.ticket');
+			all_tickets.each(function(){
+				ticketOptinos.push('<option value="'+$(this).data('val')+'">' + $(this).data('show') + '</option>');
+			});	
+			// 获取联系人列表并且创建联系人选择下拉框
+			$.ajax({
+				url:'http://localhost:8080/12306_cn/contactAction$list',
+				dataType:'jsonp',
+				success:function(result){
+					require(['alerts'],function(){
+						if( result.info && result.info.length ){
+							var lxr = result.info, opts = [];
+							for (var i = 0; i < lxr.length; i++) {
+								opts.push( '<option value="'+lxr[i].id+'">'+lxr[i].name+'</option>' )
+							};
+							// 联系人下拉框填充到jConfirm中
+							jConfirm( '<p>选择联系人：<select id="cid-select">'+ opts.join('') +'</select><br />选择票种类：<select id="ticket_type">'+ticketOptinos.join('')+'</select></p>',
+							'预订车票',{
+								okButton : "预订",
+								cancelButton : "取消"
+							},function(r){
+								if(r){
+									//确定时提交订单信息
+									var cid = $('#cid-select').val();
+									var ticket_type = $('#ticket_type').val();
+									$.ajax({
+										url:'http://localhost:8080/12306_cn/orderAction$addOrder',
+										dataType:'jsonp',
+										data:{
+											'orders.tid': current.data('id'), //车票ID
+											'orders.cid': cid,
+											'orders.seat_type': ticket_type,
+											'orders.price':current.parent().parent().next().children('.'+ticket_type).text(),
+											'orders.status': 0 //未付款
+										},
+										success:function(result){
+											if(result.success){
+												//window.location.href="/";
+												jTip('预订成功');
+											}else{
+												jAlert( result.error );
+											}
+										}
+									});
+								}
+							});
+
+						}else{
+							jAlert( '您还没有联系人！' );
+						}
+					});
+						
+				}
+			});
+		}
+		e.stopPropagation();
+	});
+
+	//
+	require(['autocomplete'],function(auto){
+		$('#fromStationText,#toStationText').autocomplete({
+			minLength: 2,
+			source : station_names_array,
+			select: function( event, ui ) {
+				$(this).next().val( ui.item.id );
+		      }
+		});
+	});
+
+	//列表加载
+	require(['template-init','queryparam'],function(TI,Q){
+		var list = function(){
+
+			TI.init({
+				tmpl: '#tmp-cp-list',
+				sourceData:function(){
+					return {
+						fromStation : $('#fromStation').val(),
+						toStation : $('#toStation').val(),
+						beginDate : $('#beginDate').val()
+					};
+				},
+				begin:function(o){
+					var list = o.source.info;
+					for (var i = 0; i < list.length; i++) {
+						var ls = list[i].lishi | 0;
+						list[i].start_station 	= station_names_map[ list[i].start_station ];
+						list[i].end_station  	= station_names_map[ list[i].end_station ];
+						list[i].start_time 	= list[i].start_time.substring(11,16);
+						list[i].arrive_time 	= list[i].arrive_time.substring(11,16);
+						list[i].lishi 	= ( ls / 60 | 0 ) + "时" + ( ls % 60 ) + "分";
+ 					};
+				},
+				callback:function(o){
+					$('#t-list tr').each(function(){
+						if( !$( this ).children('.ticket').length ){
+							$(this).find('.btn-book').removeClass();
+						}
+					});
+				}
+			});
+		};
+		
+		var fromStation = Q('fromStation'),
+			toStation = Q('toStation'),
+			beginDate = Q('beginDate');
+		if( fromStation && toStation && beginDate && station_names_map[fromStation] && station_names_map[toStation] ){
+			$('#fromStation').val(fromStation);
+			$('#toStation').val(toStation);
+			$('#beginDate').val(beginDate);
+
+			$('#fromStationText').val( station_names_map[fromStation].value );
+			$('#toStationText').val( station_names_map[toStation].value );
+			$('#from-to-show').html( station_names_map[fromStation].zh_name+"-->>"+station_names_map[toStation].zh_name );
+			list();
+		}
+
+		$("#query_titcket").on('click',function(){
+			var fromStation = $('#fromStation').val(),
+				toStation = $('#toStation').val();
+			$('#from-to-show').html( station_names_map[fromStation].zh_name+"-->>"+station_names_map[toStation].zh_name );
+			list();	
+		});
+
+	});
+
+	require(['dateUtil'],function(DateUtil){
+		$('#beginDate').val( DateUtil.format( new Date(), 'yy-MM-dd' ) );
+	});
+</script>
+
+

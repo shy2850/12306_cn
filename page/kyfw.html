@@ -1,0 +1,333 @@
+$belong[frame.html]
+	<div class="content">
+		<div class="index-side">
+			<div class="layout se-box">
+				<div class="lay-hd">车票查询</div>
+				<div class="lay-bd">
+					<div class="search">
+						<div class="search-hd">
+							<span>
+								<input type="radio" name="radio" id="oneWay" checked="checked">单程
+							</span>
+							<span>
+								<input type="radio" name="radio" id="return">往返
+							</span>
+						</div>
+						<div class="search-bd">
+							<form action="/cpyd.html">
+							<ul>
+								<li>
+									<span class="label">出发地</span>
+									<div class="inp-w">
+										<input type="text" id="fromStationText" class="inp-txt"  placeholder="简拼/汉字">
+										<input type="hidden" name="fromStation">
+										<span></span>
+									</div>
+								</li>
+								<li>
+									<span class="label">目的地</span>
+									<div class="inp-w">
+										<input type="text" id="toStationText" class="inp-txt"  placeholder="简拼/汉字">
+										<input type="hidden" name="toStation">
+										<span></span>
+									</div>
+								</li>
+								<li>
+									<span class="label">出发日</span>
+									<div class="inp-w">
+										<input type="text" name="beginDate" class="inp-txt Wdate" placeholder="yyyy-MM-dd" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})" value="">
+									</div>
+								</li>
+								<li id="fc">
+									<span class="label">返程日</span>
+									<div class="inp-w">
+										<input type="text" class="inp-txt Wdate" placeholder="yyyy-MM-dd"  onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})" value="2014-04-26">
+									</div>
+								</li>
+								<li>
+									<div class="type">
+										<span>
+											<input type="radio" name="radio" id="ordinary" checked="checked">普通
+										</span>
+										<span>
+											<input type="radio" name="radio" id="student">学生
+										</span>
+									</div>
+								</li>
+							</ul>
+							<div class="search-b">
+								<input type="submit" class="btn-login" value="查询">
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="guide layout">
+				<div class="lay-hd">出行向导</div>
+				<div class="lay-bd">
+					<ul>
+						<li>
+							<a href="#" title="可查询车站经过车次、列车等级、始发站、终到站、区间运行时刻等列车信息。">
+								<span class="img czcx"></span>
+								<span>车站查询</span>
+							</a>
+						</li>
+						<li>
+							<a href="#" title="支持自动搜索中转站或手工输入中转站方式查询，可查询中转站列表，站间车次、区间运行时刻、票价等列车信息。">
+								<span class="img zzcx"></span>
+								<span>中转查询</span>
+							</a>
+						</li>
+						<li>
+							<a href="#" title="可查询两站间列车的票价信息。">
+								<span class="img pjcx"></span>
+								<span>票价查询</span>
+							</a>
+						</li>
+						<li>
+							<a href="#" title="可查询未来3小时内列车正晚点信息。">
+								<span class="img zwdcx"></span>
+								<span>正晚点查询</span>
+							</a>
+						</li>
+						<li>
+							<a href="#" title="选择省、市、区并点击查询，可查询代售点名称、地址、电话、营业时间等信息。">
+								<span class="img kpds"></span>
+								<span>客票代售点</span>
+							</a>
+						</li>
+					</ul>
+				</div>	
+			</div>
+		</div>
+		<div class="slideTxt" id="xz-tabs">
+			<div class="hd">
+				<ul>
+					<li class="zxzt">
+						<span>
+							<a href="javascript:void(0);">最新动态</a>
+						</span>
+					</li>
+					<li class="">
+						<span>
+							<a href="javascript:void(0);">购票常见问题</a>
+						</span>
+					</li>
+					<li class="">
+						<span>
+							<a href="javascript:void(0);">使用须知</a>
+						</span>
+					</li>
+					<li class="end">
+						<span>
+							<a href="javascript:void(0);">相关规章</a>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="bd">
+				<ul class="on">
+					<li>
+						<span class="num">1</span>
+						<div class="info">
+							<a href="#">关于2014年上半年京沪、京广高铁部分G字头动车组列车商务、特等、一等座实施特惠票价的公告</a>
+							<img src="images/icon_new.png">
+						</div>
+						<div class="time">
+							2014-4-8
+						</div>
+					</li>
+					<li class="bgc">
+						<span class="num">2</span>
+						<div class="info">
+							<a href="#">关于2014年短途卧铺优惠有关事宜的公告</a>
+							<img src="images/icon_new.png">
+						</div>
+						<div class="time">
+							2014-4-8
+						</div>
+					</li>
+					<li>
+						<span class="num">3</span>
+						<div class="info">
+							<a href="#">关于网站对用户身份信息进行核验的公告</a>
+							<img src="images/icon_new.png">
+						</div>
+						<div class="time">
+							2014-4-8
+						</div>
+					</li>
+					<li class="bgc">
+						<span class="num">4</span>
+						<div class="info">
+							<a href="#">铁路互联网购票身份核验须知</a>
+							<img src="images/icon_new.png">
+						</div>
+						<div class="time">
+							2014-4-8
+						</div>
+					</li>
+					<li>
+						<span class="num">5</span>
+						<div class="info">
+							<a href="#">关于调整部分车站互联网、电话订票起售时间的公告</a>
+							<img src="images/icon_new.png">
+						</div>
+						<div class="time">
+							2014-4-8
+						</div>
+					</li>
+					<li class="bgc">
+						<span class="num">6</span>
+						<div class="info">
+							<a href="#">广铁集团公司关于清明节期间加开部分旅客列车的公告（四）</a>
+						</div>
+						<div class="time">
+							2014-4-8
+						</div>
+					</li>
+					<li>
+						<span class="num">7</span>
+						<div class="info">
+							<a href="#">关于兰州至敦煌间加开Y667/ Y668次旅客列车的公告</a>
+						</div>
+						<div class="time">
+							2014-4-8
+						</div>
+					</li>
+					<li class="bgc">
+						<span class="num">8</span>
+						<div class="info">
+							<a href="#">关于兰州至乌鲁木齐间加开L789/ L790次旅客列车的公告</a>
+						</div>
+						<div class="time">
+							2014-4-8
+						</div>
+					</li>
+					<li>
+						<span class="num">9</span>
+						<div class="info">
+							<a href="#">广铁集团公司关于4月16日至6月30日期间怀化至西安1608/5次旅客列车临时停运的公告</a>
+						</div>
+						<div class="time">
+							2014-4-8
+						</div>
+					</li>
+					<li class="bgc">
+						<span class="num">10</span>
+						<div class="info">
+							<a href="#">青藏铁路公司关于4月7日西宁西至格尔木间加开K9817次临时旅客列车的公告</a>
+						</div>
+						<div class="time">
+							2014-4-8
+						</div>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<span class="num">1</span>
+						<a href="#">身份核验结果有哪几种状态？</a>
+						<img src="images/icon_new.png">
+					</li>
+					<li class="bgc">
+						<span class="num">2</span>
+						<a href="#">如何了解自己的身份信息核验结果？</a>
+						<img src="images/icon_new.png">
+					</li>
+					<li>
+						<span class="num">3</span>
+						<a href="#">“已通过”的二代身份证注册用户如何添加常用联系人（乘车人）？</a>
+						<img src="images/icon_new.png">
+					</li>
+					<li class="bgc">
+						<span class="num">4</span>
+						<a href="#">购买实名制车票后丢失了怎么办？</a>
+					</li>
+					<li>
+						<span class="num">5</span>
+						<a href="#">我在网站购票时，扣款成功但购票不成功怎么办？</a>
+					</li>
+					<li class="bgc">
+						<span class="num">6</span>
+						<a href="#">我在网站购票时不小心重复支付了，重复扣的票款没有及时到帐，怎么办？</a>
+					</li>
+					<li>
+						<span class="num">7</span>
+						<a href="#">我在网站购票又退票后，为什么钱没有及时退还给我的银行卡？</a>
+					</li>
+					<li class="bgc">
+						<span class="num">8</span>
+						<a href="#">我在网站购票又在车站售票窗口改签或退票后，为什么钱没有及时退还给我的银行卡?</a>
+					</li>
+					<li>
+						<span class="num">9</span>
+						<a href="#">旅客在12306网站购票成功，在窗口取票时为何系统提示错误？</a>
+					</li>
+					<li class="bgc">
+						<span class="num">10</span>
+						<div class="info">
+							<a ihref="#">注册时，网站提示“身份信息重复”，怎么办？</a>
+						</div>
+						<div class="time">
+							<a href="#">更多&gt;</a>
+						</div>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<span class="num">1</span>
+						<a href="#">注册新用户</a>
+					</li>
+						<li class="bgc"><span class="num">2</span>
+						<a href="#">网上购票流程</a>
+					</li>
+						<li><span class="num">3</span>
+						<a href="#">铁路电子客票</a>
+					</li>
+						<li class="bgc"><span class="num">4</span>
+						<a href="#">身份核验</a>
+						<img src="images/icon_new.png">
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<span class="num">1</span>
+						<a href="#">《铁路互联网售票暂行办法》</a>
+					</li>
+					<li class="bgc"><span class="num">2</span>
+						<a href="#">《铁路旅客运输规程》</a>
+					</li>
+					<li>
+						<span class="num">3</span>
+						<a href="#">《铁路互联网购票须知》</a>
+					</li>
+					<li class="bgc"><span class="num">4</span>
+						<a href="#">《铁路旅客运输办理细则》</a>
+					</li>
+					<li>
+						<span class="num">5</span>
+						<a href="#">《铁路互联网购票身份核验须知》</a>
+						<img src="images/icon_new.png">
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+<script>
+	$('#xz-tabs .hd li').on('mouseover',function(){
+		$(this).addClass('hover').siblings().removeClass('hover');
+		$('#xz-tabs .bd ul').hide().eq( $(this).index() ).show();
+	});
+	
+	require(['autocomplete'],function(auto){
+		$('#fromStationText,#toStationText').autocomplete({
+			minLength: 2,
+			source : station_names_array,
+			select: function( event, ui ) {
+				$(this).next().val( ui.item.id );
+		      }
+		});
+	});
+</script>

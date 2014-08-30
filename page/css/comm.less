@@ -1,0 +1,1199 @@
+@img_bg:url(../images/bg.png);
+@img_logo:url(../images/logo.png);
+@img-icon8:url(../images/icon8.png);
+@img_return:url(../images/bg_return.png);
+@img_bg02:url(../images/bg02.png);
+@img_bg_btn:url(../images/bg_btn.png);
+@img_icon:url(../images/icon.png);
+@img_line_tlisth:url(../images/line_tlisth.png);
+@img_bg_tlisth: url(../images/bg_tlisthd.png);
+
+@color_theme: #478dcd;
+
+body,div,ul,li,ol,dl,dd,dt,table,tr,th,td,h1,h2,h3,h4,h5,h6,img,p{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+li{
+	list-style-type: none;
+}
+a{
+	text-decoration: none;
+	color: #333;
+	
+}
+.hidden{
+	display: none;
+}
+
+.toCenter(@width:1000px){
+	width: @width;
+	margin: 0 auto;
+}
+//清除浮动(自己响应内部浮动元素高度)
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+*html .clearfix {
+	height: 1%;
+}
+.header{
+	background: @img_bg 0 0 repeat-x;
+	.header-bd{
+		.toCenter();
+		height: 66px;
+		.logo{
+			float: left;
+			height: 46px;
+			width: 384px;
+			background: @img_logo 0 0 no-repeat;
+			text-indent: -999em;
+			margin-top: 10px;
+
+		}
+		.login-info{
+				float: right;
+				height: 30px;
+				line-height: 30px;
+				font-size: 12px;
+				color: #666;
+				a{
+					color: #666;
+					&:hover,&.hover{
+						color: #f60; 
+					}
+				}
+				.phone-link{
+					float: right;
+					padding: 0 2px 0 14px;
+					background: url(../images/icon_phone.png) left center no-repeat;
+				}
+				.menu{
+					position: relative;
+					float: right;
+					margin: 0 20px;
+					overflow: hidden;
+					height: 30px;
+					width: 80px;
+					z-index: 1000;
+					&:hover,&.hover{
+						overflow: visible;
+						.menu-list i{
+							display: block;
+							*display: none;
+						}
+					}
+					.menu-bd{
+						padding: 0 20px 0 2px;
+						display: block;
+						i{
+							float: right;
+							width: 12px;
+							height: 6px;
+							background: @img-icon8 1px -35px no-repeat;
+							margin: 12px -20px 0 0; 
+						}
+					}
+					.menu-list{
+						position: absolute;
+						background: #eef1f8;
+						border: 1px solid #298cce;
+						line-height: 20px;
+						width: 130px;
+						padding: 4px 1em;
+						a{
+							&:hover{
+								color: #07f;
+							}
+						}
+						i{
+							display: none;
+							width: 14px;
+							height: 8px;
+							position: absolute;
+							left: 66px;
+							top: -8px;
+							background: @img-icon8 0px -64px no-repeat;
+						}
+					}
+				}
+				.login-text{
+					margin-right: 10px;
+				}
+		}
+		.nav{
+			position: relative;
+			float:right;
+			width: 420px;
+			height: 34px;
+			background: url(../images/bg_nav.png) left top  no-repeat;
+			padding-left: 63px;
+			li{
+				float: left;
+				width: 70px;
+				height: 30px;
+				margin: 4px 10px 0 0 ;
+				a{
+					display: block;
+					font-size: 14px;
+					height: 28px;
+					line-height: 28px;
+					color: #fff;
+					text-align: center;
+					&:hover{
+						background: #fff;
+						color: #478dcd;
+						font-weight: bold;
+						border-radius: 3px;
+					}
+				}
+			}
+			li{
+				&:hover, &.current{
+					.nav-list {
+						display: block;
+					}
+				}
+				.nav-list{
+					position: absolute;
+					top: 34px;
+					right: 0px;
+					width: 980px;
+					height: 32px;
+					background: url(../images/bg_navlist.png) left top repeat-x;
+					margin-left: -800px;
+					border-top: 2px solid #478dcd;
+					display: none;
+					li{
+						float: right;
+						width: auto;
+						_width: 96px;
+						margin: 4px 20px;
+						text-align: center;
+						a{
+							color: #666;
+							padding: 3px 0 3px 5px;
+							height: 14px;
+							line-height: 14px;
+							border-radius: 0;
+							border-left: 2px solid transparent;
+							&:hover{
+								background: none;
+								color: #478dcd;
+								font-weight: 400;
+								border-left: 2px solid #478dcd; 
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.content{
+	.toCenter();
+	min-height: 700px;
+	margin-top: 10px;
+	font-size: 12px;
+	color: #333;
+	.layout,.slideTxt{
+		background: @img_bg repeat-x;
+		border: 1px solid #1678be;
+		border-radius: 5px 5px 0 0;	
+		background-position: 0px -400px;
+		magin-left: 20px;
+		.lay-hd{
+			height: 32px;
+			line-height: 30px;
+			color: #e5f8ff;
+			padding-left: 20px;
+		}
+		.lay-bd{
+			background: #eef1f8;
+			font-size: 12px;
+		}
+	}
+	.index-side{
+		width: 350px;
+		float: left;
+		.se-box{
+			.lay-bd{
+				.search{
+					width: 308px;
+					padding-bottom: 10px;
+					margin: 0 auto;
+					font-size: 12px;
+					.search-hd{
+						border-bottom: 1px solid #5fb0dc;
+						padding: 5px 0 5px 18px;
+						height: 20px;
+						line-height: 20px;
+						span{
+							cursor: pointer;
+							padding-right: 40px;
+							input{
+								cursor: pointer;
+								margin-right: 8px;
+							}
+						}
+					}
+					.search-bd{
+						ul{
+							margin-top:2px;
+							li{
+								padding: 2px 0;
+								height: 30px;
+								line-height: 30px;
+								.label{
+									display: block;
+									width: 60px;
+									text-align: center;
+									float: left;
+									padding-right: 25px;
+									overflow: hidden;
+								}
+								.inp-w{
+									position: relative;
+									width: 200px;
+									height: 30px;
+									line-height: 30px;
+									float: left;
+									padding-right: 20px;
+									.inp-txt{
+										width: 193px;
+										height: 18px;
+										line-height: 18px;
+										border: 1px solid #cfcdc7;
+										color: #999;
+										padding: 5px 0 5px 5px;
+									}	
+									span{
+										position: absolute;
+										right: 28px;
+										bottom: 2px;
+									}
+								}
+								.type{
+									padding-left: 80px;
+									span{
+										margin-right: 40px;
+									}
+								}
+							}
+						}
+						.search-b{
+							text-align: center;
+							.btn-login{
+								display: block;
+								background: url(../images/bg_btn.png)  0px 0px repeat-x;
+								width: 225px;
+								height: 30px;
+								line-height: 30px;
+								margin: 5px auto;
+								color: #fff;
+								font-size: 16px;
+								font-weight: bold;
+								border-radius: 3px;
+								border: 0;
+								cursor: pointer;
+							}
+						}
+					}
+				}
+			}
+		}
+		.guide{
+			margin-top: 10px;
+			.lay-bd{
+				width: 348px;
+				height: 90px;
+				padding-top: 5px;
+				li{
+					width: 69px;
+					float: left;
+					text-align: center;
+					a{
+						color: #666;
+						.img{
+							display: block;
+							width: 60px;
+							height: 60px;
+							margin: 0 auto;
+							background: url(../images/icon_guide.png);
+							margin-bottom: 5px;
+						}
+						.zzcx{
+							background-position: 0 -60px;
+						}
+						.pjcx{
+							background-position: 0 -120px;
+						}
+						.zwdcx{
+							background-position: 0 -180px;	
+						}
+						.kpdsd{
+							background-position: 0 -240px;
+						}
+						&:hover{
+							color: #333;
+						}
+					}
+				}
+			}
+		}
+	}
+	.slideTxt{
+		width: 618px;
+		height: 422px;
+		float: right;
+		.hd{
+			height: 30px;
+			line-height: 30px;
+			li{
+				float: left;
+				margin-top: 6px;
+				padding: 0 6px 0 4px;
+				background: url(../images/bg_line.png) right center no-repeat;
+				a{	
+					color: #fff;
+					display: block;
+					width: 140px;
+					height: 24px;
+					line-height: 24px;
+					text-align: center;
+					border-radius: 5px 5px 0 0 ;
+					padding-right: 4px;
+				}
+				&.hover a{
+					background: #66c8e8;
+				}
+			}
+			.end{
+				background: url(../images/bg_line.png) -100px 0 no-repeat
+			}
+		}
+		.bd{
+			.num{
+				background: url(../images/icon.png) no-repeat;
+			}
+			.on{
+				display: block;
+			}
+			ul{
+				display: none;
+				li{
+					font-size: 14px;
+					height: 22px;
+					border-bottom: 1px dashed #d9d9d9;
+					width: 608px;
+					padding: 8px 0 8px 10px;
+					overflow: hidden;
+					span{
+						display: block;
+						width: 16px;
+						height: 16px;
+						line-height: 16px;
+						overflow: hidden;
+						float: left;
+						background-position: 0 0 ;
+						margin: 2px 10px 0 0 ;
+						color: #fff;
+						text-align: center;
+					}
+					.info{
+						float: left;
+						width: 470px;
+						overflow: hidden;
+						height: 22px;
+						line-height: 22px;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						a{
+							margin-right: 10px;
+							color: #333;
+						}
+					}
+					.time{
+						display: block;
+						float: right;
+						padding-right: 10px;
+					}
+					
+				}
+				.bgc{
+					background: #eef1f8;
+				}
+			}
+			
+		}
+	}
+
+	//车票预订的css
+	.cpyd,.ypcx{
+		font-size: 12px;
+		color: #333;
+		.sear-box{
+			background: #eef1f8;
+			height: 48px;
+			border: 1px solid #298cce;
+			border-radius: 3px;
+			padding: 12px 10px;
+			.dfc{
+				float: left;
+				width: 60px;
+				margin-right: 5px;
+				background: url(../images/line_sear.png) right top no-repeat;
+				li{
+					height: 20px;
+					line-height: 20px;
+					padding: 2px;
+				}
+			}
+			.s-info{
+				float: left;
+				margin-right: 15px;
+				li{
+					width: 164px;
+					float: left;
+					height: 30px;
+					line-height: 30px;
+					// overflow: hidden;
+					padding: 10px 0;
+					.label{
+						display: block;
+						width: 40px;
+						float: left;
+						margin: 0;
+						padding: 0;
+						label{
+							margin-right: 4px;
+							text-align: right;
+						}
+					}
+					.inp-w{
+						position: relative;
+						width: 122px;
+						height: 30px;
+						float: left;
+						.inp-txt{
+							width: 113px;
+							height: 18px;
+							line-height: 18px;
+							border: 1px solid #cfcdc7;
+							padding: 5px 0 5px 5px;
+							color: #333;
+						}
+						span{
+							cursor: pointer;
+						}
+
+						.i-city{
+							display: block;
+							position: absolute;
+							right: 0px;
+							top: 5px;
+							width: 26px;
+							height: 26px;
+							background: @img_icon 0 -150px no-repeat;
+							float: right;
+							
+						}
+						.i-date{
+							position: absolute;
+							right: 6px;
+							bottom: 2px;
+							
+						}
+					}
+				}
+				.i-change{
+					width: 16px;
+					height: 0px;
+					background: @img_bg02 -67px -96px no-repeat; 
+					margin-top: 18px;
+					margin-right: 4px;
+				}
+			}
+			.quick-s{
+				float: left;
+				width: 184px;
+				height: 58px;
+				background: url(../images/line_sear.png) left top no-repeat;
+				padding-left: 15px;
+				margin-top: -5px;
+				ul{
+					width: 80px;
+					float: left;
+					margin-top: 4px;
+					li{
+						height: 23px;
+						line-height: 23px;
+					}
+				}
+				.btn_area{
+					float: left;
+					margin-top: 12px;
+					width: 98px;
+					a{
+						display: block;
+						color: #fff;
+						height: 30px;
+						line-height: 30px;
+						width: 100px;
+						font-size: 14px;
+						text-align: center;
+						border-radius: 3px;
+						background: @img_bg_btn left top repeat-x;
+						&:hover{
+							background-position: 0px -50px;
+						}
+ 					}
+				}
+			}
+		}
+		.sear-result{
+			height: 25px;
+			line-height: 25px;
+			margin-top: 8px;
+			.kyd{
+				display: block;
+				height: 20px;
+				line-height: 20px;
+				float: right;
+				position: relative;
+				input{
+					position: absolute;
+					right: 112px;
+					bottom: 0px;
+				}
+			}
+		}
+		.t-list{
+			table{
+				background: @img_bg_tlisth 0 0 repeat-x;
+				width: 100%;
+				border-spacing: 0;
+				border-collapse: collapse;
+				tbody{
+					border-left: 1px solid #b0cedd;
+					border-bottom: 1px solid #b0cedd;
+					tr{
+						&:nth-child(even){
+							background: #eef1f8;
+						}
+						&:hover{
+							background: #eff;
+						}
+					}
+					td{
+						border-right: 1px solid #b0cedd;
+						border-top: 1px solid #b0cedd;
+						color: #000;
+						height: 36px;
+						padding: 2px 0;
+						text-align: center;
+					}
+				}
+			}
+			 th{
+				background: @img_line_tlisth right center no-repeat;
+				height: 52px;
+				color: #fff;
+				overflow: hidden;
+				/*
+				.b1,.b2,.b3{
+					padding-right: 13px;
+				}
+				.b1{
+					background: url(../images/icon_sj01.png) right center no-repeat;
+				}
+				.b2{
+					background: url(../images/icon_sj02.png) right center no-repeat;
+				}
+				.b3{
+					background: url(../images/icon_sj03.png) right center no-repeat;
+				}
+				.b4{
+					background: url(../images/icon_sj04.png) right center no-repeat;
+				}
+				*/
+			}
+			.last{
+				background: none;
+			}
+		}
+	}
+	//余票查询 css
+	.ypcx{
+		.sear-box{	
+			font-size: 14px;
+			.s-info{
+				ul{
+					li{
+						width: 176px;
+						.label{
+							width: 46px;
+						}
+					}
+				}
+			}
+			.quick-s{
+				background: none;
+				width: 400px;
+				margin-top: 5px;
+				a{
+					display: block;
+					float: left;
+					background: @img_bg_btn 0px 0px  repeat-x;
+					border-radius: 3px;
+					width: 140px;
+					height: 30px;
+					line-height: 30px;
+					color: #fff;
+					margin: 5px;
+					text-align: center;
+					font-size: 14px;
+					&:hover{
+						background-position: 0px -50px;
+					}
+				}
+
+			}
+		}
+	}
+
+	//出行向导	车站车次查询 css
+	.czcx,.cccx{
+		.lay-sear{
+			margin-top: 40px;
+			height: 40px;
+			background: #eef1f8;
+			border:1px solid #298cce;
+			border-radius: 3px;
+			padding: 10px 0;
+			font-size: 14px;
+			ul{
+				li{
+					display: block;
+					float: left;
+					margin-top: 4px;
+					.label{
+						display: block;
+						float: left;
+						width: 72px;
+						height: 30px;
+						line-height: 30px;
+						text-align: right;
+						padding-right: 5px;
+						b{
+							color: red;
+							font-size: 16px;
+							font-weight: normal;
+							padding-right: 5px;
+						}
+					}
+					.inp-w{
+						position: relative;
+						float: left;
+						width: 152px;
+						height: 30px;
+						.inp-txt{
+							float: left;
+							width: 120px;
+							height: 18px;
+							line-height: 18px;
+							border:1px solid #cfcdc7;
+							padding: 5px 0 5px 5px;
+						}
+						.img{
+							float: left;
+							width: 58px;
+							height: 28px;
+							border: 1px solid #999;
+							margin:0  10px;
+							cursor: pointer;
+							img{
+								display: block;
+							}
+						}
+						.randCode{
+							width: 65px;
+						}
+						.i-fresh{
+							position: absolute;
+							right: 30px;
+							top: 8px;
+							height: 16px;
+							width: 16px;
+							display: block;
+							float: left;
+							background: @img_icon 0 -1200px no-repeat;
+							padding-left: 4px;
+						}
+					}
+					.yzm{
+						width: 200px;
+					}
+				}
+			}
+			.btn-area{
+				display: block;
+				margin:4px 18px ;
+				float: left;
+				a{
+					display: block;
+					width: 125px;
+					height: 30px;
+					line-height: 30px;
+					background: @img_bg_btn 0px 0px repeat-x;
+					border-radius: 3px;
+					color: #fff;
+					text-align: center;
+					font-size: 14px;
+					&:hover{
+						background-position: 0 -50px;
+					}
+				}
+			}
+		}
+		.sear-sel{
+			position: relative;
+			margin-top: 10px;
+			height: 88px;
+			border: 1px solid #3391d0;
+			.sear-sel-bd{
+				font-size: 12px;
+				.section{
+					margin: 3px 0;
+					height: 18px;
+					line-height: 18px;
+					.section-hd{
+						float: left;
+						text-align: right;
+						width: 76px;
+						font-weight: bold;
+					}
+					.section-bd{
+						float: left;
+						.all{
+							display: block;
+							float: left;
+							width: 33px;
+							height: 18px;
+							line-height: 18px;
+							color: #999;
+							padding: 2px 2px 0 0;
+							text-align: center;
+							background: @img_bg02 0px -377px no-repeat;
+							// background: @img_bg02 0px -347px no-repeat;
+						}
+
+						ul{
+							float: left;
+							li{
+								display: block;
+								float: left;
+								width: 100px;
+								padding-left: 10px;
+								input{
+									display: block;
+									float: left;
+								}
+							}
+						}
+
+					}
+				}
+				.cc-input{
+					margin-right: 20px;
+					position: absolute;
+					right: 10px;
+					top: 2px;
+					float: left;
+					.section-hd{
+						width: 60px;
+						height: 30px;
+					}
+					.inptxt{
+						display: block;
+						width: 85px;
+						height: 18px;
+						padding: 2px 0px 2px 5px; 
+						border: 1px solid #cfcdc7;
+					}
+				}
+			}
+			.sear-sel-btn{
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				display: block;
+				width: 60px;
+				height: 11px;
+				text-indent: -99999px;
+				background: @img_bg02 -60px -230px no-repeat;
+
+				.show-more{
+					display: block;
+					width: 60px;
+					height: 11px;
+					line-height: 11px;
+					coursor:pointer;
+				}
+			}
+		}
+		.m12{
+			position: relative;
+			height: 46px;
+			overflow: hidden;
+		}
+		.btn12{
+			background-position: -60px -220px;
+		}
+		.sear-tips{
+			height: 25px;
+			line-height: 25px;
+			.colorA{
+				color: #f60;
+			}
+		}
+		.t-list{
+			margin-top: 10px;
+			border: 1px solid #298cce;
+			table{
+				width: 100%;
+				background: @img_bg_tlisth 0 0 repeat-x;
+				border-spacing: 0px;
+				th{
+					height: 52px;
+					color: #fff;
+					background: @img_line_tlisth right center no-repeat;
+					/*
+					.b3,.b2{
+						padding-right: 13px;
+					}
+					.b1{
+						background: url(../images/icon_sj01.png) right center no-repeat;
+					}
+					.b2{
+						background: url(../images/icon_sj02.png) right center no-repeat;
+					}
+					.b3{
+						background: url(../images/icon_sj03.png) right center no-repeat;
+					}
+					.b4{
+						background: url(../images/icon_sj04.png) right center no-repeat;
+					}
+					*/
+				}	
+				.last{
+					background: none;
+				}				
+			}
+		}
+	}
+	//出行向导	票价查询 css
+	.pjcx{
+		.sear-box{
+			margin-top: 40px;
+			height: 40px;
+			border: 1px solid #298cce;
+			background: #eef1f8;
+			border-radius: 3px;
+			padding: 8px;
+			.s-info{
+				li{
+					float: left;
+					padding: 5px 0;
+					width: 175px;
+					position: relative;
+					.label{
+						float: left;
+						width: 55px;
+						height: 30px;
+						line-height: 30px;
+						text-align: center;
+						padding-right: 5px;
+						font-size: 14px;
+					}
+					.inp-w{
+						float: left;
+						position: relative;
+						width: 113px;
+						height: 30px;
+						.inp-txt{
+							width: 106px;
+							height: 18px;
+							line-height: 18px;
+							border: 1px solid #cfcdc7;
+							color: #999;
+							padding: 5px 0 5px 5px;  
+						}
+						.i-city{
+							display: block;
+							position: absolute;
+							right: -5px;
+							top: 5px;
+							width: 26px;
+							height: 26px;
+							background: @img_icon 0 -150px no-repeat;
+							float: right;
+							
+						}
+						.i-date{
+							position: absolute;
+							right: 4px;
+							bottom: 2px;
+						}
+					}
+					.zym{
+						width: 200px;
+					}
+				}
+				.item-code{
+					width: 280px;
+					.yzm{
+						width: 200px;
+						input{
+							display: block;
+							float: left;
+							width: 65px;
+							margin-right: 10px;
+						}
+						.img{
+							display: block;
+							float: left;
+							width: 58px;
+							height: 28px;
+							border: 1px solid #999;
+							margin-right: 10px;
+							cursor: pointer;
+						}
+						.i-fresh{
+							background: @img_icon 0 -1200px no-repeat;
+							height: 16px;
+							width: 16px;
+							display: block;
+							float: left;
+							margin: 4px 10px 0 4px;
+							cursor: pointer;
+						}
+					}
+				}
+				.i-change{
+					width: 16px;
+					height: 5px;
+					background: @img_bg02 -67px -96px no-repeat; 
+					margin-top: 14px;
+					margin-right: 4px;
+				}
+			}
+			.btn-area{
+				float: left;
+				padding: 4px 0 0 10px;
+				a{
+					display: block;
+					width: 110px;
+					height: 30px;
+					line-height: 30px;
+					background: @img_bg_btn 0 0px repeat-x;
+					border-radius: 3px;
+					font-size: 14px;
+					text-align: center;
+					color: #fff;
+					&:hover{
+						background-position: 0 -50px;
+					}
+				}
+			}
+		}
+		.t-list{
+			table{
+				width: 100%;
+				margin-top: 10px;
+				background: @img_bg_tlisth 0 0 repeat-x;
+				th{
+					height: 52px;
+					color: #fff;
+					background: @img_line_tlisth right center no-repeat;
+				}
+				.last{
+					background: none;
+				}
+				.b1,.b2,.b3,.b4{
+					padding-right: 13px;
+				}
+				.b1{
+					background: url(../images/icon_sj01.png) right center no-repeat
+				}
+				.b2{
+					background: url(../images/icon_sj02.png) right center no-repeat
+				}
+				.b3{
+					background: url(../images/icon_sj03.png) right center no-repeat
+				}
+				.b4{
+					background: url(../images/icon_sj04.png) right center no-repeat
+				}
+			}
+		}
+	}
+
+
+
+}
+//我的12306
+.my12306{
+	.toCenter();
+	height: 600px;
+	font-size: 14px;
+	font-family: Tahoma,"宋体";
+	.crumbs{
+		height: 32px;
+		line-height: 32px;
+		font-size: 12px;
+	}
+	.layout{
+		background: @img_bg 0 -400px repeat-x;
+		border-radius: 5px 5px 0 0 ;
+		border: 1px solid #1678be;
+		border-radius: 5px 5px 0 0;
+		.lay-hd{
+			color: #e5f8ff;
+			height: 32px;
+			line-height: 30px;
+			padding-left: 20px;
+		}
+	}
+	.sidebar{
+		width: 200px;
+		margin-right: 10px;
+		float: left;
+		.layout{
+			.lay-bd{
+				padding: 20px 14px;
+				background: #eef1f8;
+				dl{
+					dt,dd{
+						height: 39px;
+						line-height: 39px;
+						border-bottom: 1px solid #ddd;
+					}
+					dt{
+						padding-left: 4px;
+					}
+					dd{
+						padding-left: 28px;
+						font-size: 12px;
+						a{
+							color: #666;
+						}
+					}
+					.last{
+						border: none;
+					}
+					.curr{
+						height: 39px;
+						line-height: 39px;
+						border-bottom: 1px solid #fff;
+						background: #fff;
+					}
+				}
+			}
+		}
+	}
+	.main{
+		width: 770px;
+		float: left;
+		.layout{
+			display: none;
+		}
+		.lay-bd{
+			min-height: 400px;
+			h3{
+				margin-top: 100px;
+				color: #f0f;
+				height: 40px;
+				line-height: 40px;
+				width: 700px;
+				text-align: center;
+			}
+		}
+	}
+}
+
+.footer{
+	width: 100%;
+	line-height: 20px;
+	border-top: 2px solid #468dcd;
+	background: #f6f6f6;
+	text-align: center;
+	margin-top: 8px;	
+	padding: 20px 0;
+	min-width: 1000px;
+	p{
+		color: #999;
+		font-size: 12px;
+		a{
+			color: #999;
+		}
+	}
+}
+.return-top{
+	position: fixed;
+	display: block;
+	right: 30px;
+	bottom: 30px;
+	width: 42px;
+	height: 42px;
+	background: @img_return;
+	&:hover{
+		background-position: 0 -42px;
+	}
+}
+
+//弹出框样式修改
+#popup_title{
+	background: @color_theme;
+}
+.fm-button{
+	background: @color_theme;
+	border-color: @color_theme;
+}
+#popup_overlay{
+	background-color: #000 !important;
+	opacity: .5 !important;
+	filter: alpha(opacity=50) !important;
+}
+
+//登陆框
+.form-dialog{
+	line-height: 30px;
+	label{
+		float: left;
+		width: 80px;
+		text-align: right;
+		padding-right: 6px;
+	}
+	input{
+		line-height: 20px;
+		width: 200px;
+	}
+}
+
+table.table{
+	font-size: 12px;
+	padding: 2px 0;
+	border-spacing: 0;
+	border-collapse: collapse;
+	width: 100%;
+	line-height: 40px;
+	tr{
+		border-bottom: 1px solid #ddd;
+	}
+}

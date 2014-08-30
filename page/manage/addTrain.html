@@ -1,0 +1,144 @@
+$belong[frame.html]
+	<style>
+		#addTrain-main{
+			width: 600px;
+			margin: 0 auto;
+		}
+		#addTrain-main h2{
+			text-align: center;
+		}
+		#addTrain-main ul{
+			padding: 0;
+		}
+		#addTrain-main li{
+			list-style: none;
+			padding: 0;
+			padding-left: 170px;
+			height: 40px;
+			line-height: 40px;
+			position:relative;
+		}
+		#addTrain-main li>label{
+			float: left;
+			display: block;
+			width: 170px;
+			height: 40px;
+			margin-left: -170px;
+			text-align: right;
+		}
+		#addTrain-main input[type=text],
+		#addTrain-main input[type=password],
+		#addTrain-main input[type=date],
+		#addTrain-main input[type=email]
+		{
+			height: 26px;
+			line-height: 26px;
+			padding: 0 4px;
+		}
+		#addTrain-main .num_item input[type=text]{
+			text-align: right;
+		}
+		#addTrain-main .Wdate{
+			width: 160px;
+		}
+		#addTrain-main select{
+			height: 28px;
+		}
+		.tip-error{
+			color: red;
+		}
+		.tip-default{
+			color: #3f3;
+			font-weight: bold;
+		}
+	</style>
+	<div class="content">
+		<div id="addTrain-main">
+			<h2>新增列车信息<span class="tip-error" id="addTrain-error"></span></h2>
+		    	<form action="http://localhost:8080/12306_cn/trainAction$addTrain" id="addTrain-form" method="post">
+		    	<ul>
+		    		<li>
+		    			<label>车次:</label>
+		    			<span>
+		    				<input type="text" name="train.checi" id="train_checi" placeholder="例如:K7821">
+		    			</span>
+		    		</li>
+		    		<li>
+		    			<label>类型:</label>
+		    			<span>
+		    				<select name="train.type" id="train_type">
+		    					<option value="1">普快</option>
+		    					<option value="2">快速</option>
+		    					<option value="3">特快</option>
+		    					<option value="4">直达</option>
+		    					<option value="5">动车</option>
+		    					<option value="6">高铁</option>
+		    				</select>
+		    			</span>
+		    		</li>
+		    		<li>
+		    			<label>始发站:</label>
+		    			<span>
+		    				<select name="train.start_station" id="start_station"></select>
+		    				<input type="text" class="inp-txt Wdate" placeholder="yyyy-MM-dd HH:mm:ss" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'%y-%M-%d',maxDate:'%y-%M-{%d+1}'})" name="train.start_time" id="start_time">
+		    			</span>
+		    		</li>
+		    		<li>
+		    			<label>终点站:</label>
+		    			<span>
+		    				<select name="train.end_station" id="end_station"></select>
+		    				<input type="text" class="inp-txt Wdate" placeholder="yyyy-MM-dd HH:mm:ss" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'%y-%M-%d'})" name="train.arrive_time" id="arrive_time">
+		    			</span>
+		    		</li>
+		    		<li class="num_item"><label>商务座:</label><span><input type="text" name="train.swz_num">张, 票价<input type="text" name="train.swz_price">￥</span></li>
+		    		<li class="num_item"><label>特等座:</label><span><input type="text" name="train.td_num">张, 票价<input type="text" name="train.td_price">￥</span></li>
+		    		<li class="num_item"><label>一等座:</label><span><input type="text" name="train.yd_num">张, 票价<input type="text" name="train.yd_price">￥</span></li>
+		    		<li class="num_item"><label>二等座:</label><span><input type="text" name="train.ed_num">张, 票价<input type="text" name="train.ed_price">￥</span></li>
+		    		<li class="num_item"><label>高级软座:</label><span><input type="text" name="train.gr_num">张, 票价<input type="text" name="train.gr_price">￥</span></li>
+		    		<li class="num_item"><label>软卧:</label><span><input type="text" name="train.rw_num">张, 票价<input type="text" name="train.rw_price">￥</span></li>
+		    		<li class="num_item"><label>硬卧:</label><span><input type="text" name="train.yw_num">张, 票价<input type="text" name="train.yw_price">￥</span></li>
+		    		<li class="num_item"><label>软座:</label><span><input type="text" name="train.rz_num">张, 票价<input type="text" name="train.rz_price">￥</span></li>
+		    		<li class="num_item"><label>硬座:</label><span><input type="text" name="train.yz_num">张, 票价<input type="text" name="train.yz_price">￥</span></li>
+		    		<li class="num_item"><label>无座:</label><span><input type="text" name="train.wz_num">张, 票价<input type="text" name="train.wz_price">￥</span></li>
+		    		<li>
+		    			<label>其他:</label>
+		    			<span>
+		    				<input type="text" name="train.other" id="train_other" placeholder="其他信息">
+		    			</span>
+		    		</li>
+		    		<li>
+		    			<input type="submit" class="fm-button" value="添加">
+		    			<input type="reset" class="fm-button" value="重置">
+		    		</li>
+		    	</ul>
+		    	</form>	
+	    </div>
+	</div>
+<script>
+	require([],function(){
+		var html = "";
+		for (var i = 0; i < station_names_array.length; i++) {
+			var s = station_names_array[i];
+			html += '<option value="'+s.id+'">'+s.pinyin+'_'+s.zh_name+'</option>'
+		};
+		$('#start_station,#end_station').append( html );
+	});
+
+	$('#addTrain-form').on('submit',function(e){
+		$.ajax({
+			url:this.action,
+			data:$(this).serialize(),
+			dataType:'jsonp',
+			success:function(data){
+				require(['alerts'],function(){
+					if(data.success){
+						jAlert( '添加成功！' );
+					}else{
+						jAlert( '添加失败! <br />	' + data.error );
+					}
+				})
+			}
+		})
+		return false;
+	});
+</script>

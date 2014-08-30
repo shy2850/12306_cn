@@ -1,0 +1,169 @@
+$belong[frame.html]
+	<div class="content">
+		<div class="czcx">
+			<div class="lay-sear">
+				<ul>
+					<li>
+						<span class="label">
+						 	<b>*</b>日期
+						 </span>
+					 	<div class="inp-w">
+					 		<input class="inp-txt"></input>
+					 		<span id="date-img" class="date-img"></span>
+					 	</div>
+					</li>
+					<li>
+						<span class="label">
+						 	<b>*</b> 车站
+						 </span>
+					 	<div class="inp-w">
+					 		<input class="inp-txt"></input>
+					 		<span id="station-img" class="station-img"></span>
+					 	</div>
+					</li>
+					<li>
+						<span class="label">验证码</span>
+					 	<div class="inp-w yzm">
+					 		<input class="inp-txt randCode" id="randCode"></input>
+					 		<span class="img"><img src="#" alt="验证码"></span>
+					 		<span class="i-fresh"></span>
+					 	</div>
+					</li>
+				</ul>
+				<div class="btn-area">
+						<a href="#" class="btn">查询</a>
+				</div>
+			</div>
+			<div class="sear-sel m12">
+				<div class="sear-sel-bd">
+					<div class="section clearfix">
+						<div class="section-hd">车次类型：</div>
+						<div class="section-bd">
+							<span class="all" >全部</span>
+							<ul>
+								<li>
+									<input class="check" type="checkbox" name="station_train_code" value="G"></input>
+									<label>G/C高铁/城际</label>
+								</li>
+								<li>
+									<input class="check" type="checkbox" name="station_train_code" value="D"></input>
+									<label>D-动车</label>
+								</li>
+								<li>
+									<input class="check" type="checkbox" name="station_train_code" value="Z"></input>
+									<label>Z-直达</label>
+								</li>
+								<li>
+									<input class="check" type="checkbox" name="station_train_code" value="T"></input>
+									<label>T-特快</label>
+								</li>
+								<li>
+									<input class="check" type="checkbox" name="station_train_code" value="K"></input>
+									<label>k-快速</label>
+								</li>
+								<li>
+									<input class="check" type="checkbox" name="station_train_code" value="QT"></input>
+									<label>其他</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="section clearfix">
+						<div class="section-hd">车站：</div>
+						<div class="section-bd">
+							<span class="all" >全部</span>
+						</div>
+					</div>
+					<div class="section clearfix">
+						<div class="section-hd">出发时段：</div>
+						<div class="section-bd">
+							<span class="all" >全部</span>
+							<ul class="ul-start-time">
+								<li>
+									<input class="check" type="checkbox" name="cc-start-time" value="1"></input>
+									<label>凌晨(0-6点)</label>
+								</li>
+								<li>
+									<input class="check" type="checkbox" name="cc-start-time" value="2"></input>
+									<label>上午(6-12点)</label>
+								</li>
+								<li>
+									<input class="check" type="checkbox" name="cc-start-time" value="3"></input>
+									<label>下午(12-18点)</label>
+								</li>
+								<li>
+									<input class="check" type="checkbox" name="cc-start-time" value="4"></input>
+									<label>晚上(18-24点)</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="section clearfix">
+						<div class="section-hd">到达时段：</div>
+						<div class="section-bd">
+							<span class="all" >全部</span>
+							<ul class="ul-end-time">
+								<li>
+									<input class="check" type="checkbox" name="cc-end-time" value="1"></input>
+									<label>凌晨(0-6点)</label>
+								</li>
+								<li>
+									<input class="check" type="checkbox" name="cc-end-time" value="2"></input>
+									<label>上午(6-12点)</label>
+								</li>
+								<li>
+									<input class="check" type="checkbox" name="cc-end-time" value="3"></input>
+									<label>下午(12-18点)</label>
+								</li>
+								<li>
+									<input class="check" type="checkbox" name="cc-end-time" value="4"></input>
+									<label>晚上(18-24点)</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="section cc-input">
+						<div class="section-hd">车次：</div>
+						<div class="section-bd" id="cc-ser-box-div">
+							<span class="inptxt" id="cc-ser-box"></span>
+						</div>
+					</div>
+				</div>
+				<div class="sear-sel-btn btn12">
+					<span id="show_more" title="收缩" class="open">展开</span>
+				</div>
+			</div>
+			<div class="sear-tips">
+				<p>全国高铁动车组车票C、D字头列车起售时间为<strong class="colorA">11:00</strong>，G字头列车起售时间为<strong class="colorA">14:00</strong>。</p>
+			</div>
+			<div class="t-list">
+				<table class="" id="queryTable">
+					<tbody>
+						<tr class="th" id="float">
+							<th width="90" rowspan="1" colspan="1">序号</th>
+							<th width="100" rowspan="1" colspan="1">车次</th>
+							<th width="100" rowspan="1" colspan="1">等级</th>
+							<th width="135" id="head4station" rowspan="1" colspan="1">
+								<div class="two-line">
+									<span>始发站</span><br>
+									<span>终到站</span>
+								</div>
+							</th>
+							<th width="135" rowspan="1" colspan="1">
+								<div class="two-line" id="startendtime">
+									<span class="b3" id="_span_starttime" style="cursor: pointer;">出发时间</span><br>
+									<span class="b2" id="_span_endtime" style="cursor: pointer;">到达时间</span>
+								</div>
+							</th>
+							<th width="100" rowspan="1" colspan="1">到时</th>
+							<th width="100" rowspan="1" colspan="1">发时</th>
+							<th width="100" rowspan="1" colspan="1">车站</th>
+							<th class="last" rowspan="1" colspan="1">
+								<span class="b2" id="_span_lishi" style="cursor: pointer;">到达查询站历时</span>
+							</th>
+						</tr>
+					</tbody><tbody id="_query_table_datas"></tbody>
+				</table>
+			</div>
+		</div>
+	</div>

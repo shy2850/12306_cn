@@ -1,0 +1,78 @@
+$belong[frame.html]
+	<div class="content">
+		<div class="cccx">
+			<div class="lay-sear clearfix">
+				<ul>
+					<li>
+						<span class="label">
+							<b>*</b>日期
+						</span>
+						<div class="inp-w">
+							<input class="inp-txt"></input>
+							<span class="date-img"></span>
+						</div>
+					</li>
+					<li>
+						<span class="label">
+							<b>*</b>车次
+						</span>
+						<div class="inp-w">
+							<input class="inp-txt"></input>
+						</div>
+					</li>
+					<li>
+						<span class="label">
+							<b>*</b>验证码
+						</span>
+						<div class="inp-w yzm">
+							<input class="inp-txt randCode" id="randCode" ></input>
+							<span class="img"><img src="#" alt="验证码"></span>
+							<span class="i-fresh"></span>
+						</div>
+					</li>
+				</ul>
+				<div class="btn-area">
+					<a href="#" class="btn" >查询</a>
+				</div>
+			</div>
+			<div class="t-list">
+				<table class="" id="queryTable">
+					<tr class="th">
+						<th width="40" rowspan="1" colspan="1">站序</th>
+						<th width="80" rowspan="1" colspan="1">车站</th>
+						<th width="80" rowspan="1" colspan="1">车次</th>
+						<th width="90" rowspan="1" colspan="1">
+							<div class="two-line" id="startendtime">
+								<span id="_span_starttime">出发时间</span><br>
+								<span id="_span_endtime">到达时间</span>
+							</div>
+						</th>
+						<th width="78" rowspan="1" colspan="1">
+							<span id="_span_lishi">历时</span>
+						</th>
+						<th width="54" rowspan="1" colspan="1">商务座</th>
+						<th width="54" rowspan="1" colspan="1">特等座</th>
+						<th width="54" rowspan="1" colspan="1">一等座</th>
+						<th width="54" rowspan="1" colspan="1">二等座</th>
+						<th width="60" rowspan="1" colspan="1">高级软卧<br clear="none">
+						（下）</th>
+						<th width="59" rowspan="1" colspan="1">软卧<br clear="none">
+						（下）</th>
+						<th width="59" rowspan="1" colspan="1">硬卧<br clear="none">
+						（中）</th>
+						<th width="54" rowspan="1" colspan="1">软座</th>
+						<th width="54" rowspan="1" colspan="1">硬座</th>
+						<th width="54" rowspan="1" colspan="1">无座</th>
+						<th class="last" rowspan="1" colspan="1">其他</th>
+						</tr>
+						</tbody><tbody id="_query_table_datas"></tbody>
+				</table>
+				<div class="t-list-bd" id="t-list-bd">
+					<div class="no-ticket" id="no_filter_ticket" style="display: none;">
+						<span class="i-no"></span>
+						<p>很抱歉，根据您的查询条件，当前未找到满足条件的列车。您可以更改查询条件后再次查询。</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

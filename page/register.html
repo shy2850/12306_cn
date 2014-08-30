@@ -1,0 +1,157 @@
+$belong[frame.html]
+	<style>
+		#register-main{
+			width: 600px;
+			margin: 0 auto;
+		}
+		#register-main h2{
+			text-align: center;
+		}
+		#register-main ul{
+			padding: 0;
+		}
+		#register-main li{
+			list-style: none;
+			padding: 0;
+			padding-left: 170px;
+			height: 40px;
+			line-height: 40px;
+			position:relative;
+		}
+		#register-main li>label{
+			float: left;
+			display: block;
+			width: 170px;
+			height: 40px;
+			margin-left: -170px;
+			text-align: right;
+		}
+		#register-main input[type=text],
+		#register-main input[type=password],
+		#register-main input[type=date],
+		#register-main input[type=email]
+		{
+			height: 26px;
+			line-height: 26px;
+			padding: 0 4px;
+		}
+		.tip-error{
+			color: red;
+		}
+		.tip-default{
+			color: #3f3;
+			font-weight: bold;
+		}
+	</style>
+	<div class="content">
+		<div id="register-main">
+			<h2>用户注册</h2>
+		    	<form action="http://localhost:8080/12306_cn/userAction$register" id="register-form" method="post">
+		    	<ul>
+		    		<li>
+		    			<label>用户名:</label>
+		    			<span>
+		    				<input type="text" name="user.email" id="user_email" placeholder="输入您的邮箱地址">
+		    			</span>
+		    		</li>
+		    		<li>
+		    			<label>密码:</label>
+		    			<span>
+		    				<input type="password" name="user.password" id="user_password">
+		    			</span>
+		    		</li>
+		    		<li>
+		    			<label>重复密码:</label>
+		    			<span>
+		    				<input type="password" name="password" id="password">
+		    			</span>
+		    		</li>
+		    		<li>
+		    			<label>真实姓名:</label>
+		    			<span>
+		    				<input type="text" name="user.name" id="user_name">
+		    			</span>
+		    		</li>
+		    		<li>
+		    			<label>身份证:</label>
+		    			<span>
+		    				<input type="text" name="user.id_card" id="user_id_card">
+		    			</span>
+		    		</li>
+		    		<li>
+		    			<label>性别:</label>
+		    			<span>
+		    				<input type="radio" name="user.sex" id="user_sex1" value="1"><label for="user_sex1"> 男 </label>
+		    				<input type="radio" name="user.sex" id="user_sex0" value="0"><label for="user_sex0"> 女 </label>
+		    			</span>
+		    		</li>
+		    		<li>
+		    			<label>籍贯:</label>
+		    			<span>
+		    				<input type="text" name="user.native_place" id="user_from" value="">
+		    			</span>
+		    		</li>
+		    		<li>
+		    			<label>出生日期:</label>
+		    			<span>
+						<input type="text" class="inp-txt Wdate" placeholder="yyyy-MM-dd" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="user.birth" id="user_borth">
+		    			</span>
+		    		</li>
+		    		<li>
+		    			<input type="submit" class="fm-button" value="注册">
+		    			<input type="reset" class="fm-button" value="重置">
+		    		</li>
+		    	</ul>
+		    	</form>	
+	    </div>
+	</div>
+<script>
+	require(['queryparam'],function(Q){
+		if( Q('update') === 'true' ){	//如果是修改个人资料 
+			$.ajax({
+				url:'http://localhost:8080/12306_cn/userAction$isLogin',
+				dataType:'jsonp',
+				success:function(result){
+					if(result.user){
+						$('#register-form').attr({
+							action : 'http://localhost:8080/12306_cn/userAction$update'
+						});
+						$("#register-main h2").html("用户修改");
+						$("#register-main :submit").val("修改");
+						$('#user_email').parent().parent().remove();
+
+						var o = result.user;
+						for(var i in o){
+							(function(k,v){
+								var el = $( '[name="user.'+k+'"]');
+								if( el.attr('type') == 'radio' ){
+									el.filter('[value="'+(v?1:0)+'"]').attr({checked:true});
+								}else{
+									el.val( v );
+								}
+							})(i,o[i])
+						}
+					}
+				}
+			});
+		}
+	});
+	$('#register-form').on('submit',function(e){
+		$.ajax({
+			url:this.action,
+			data:$(this).serialize(),
+			dataType:'jsonp',
+			success:function(data){
+				if( data.success ){
+					require(['alerts'],function(){
+						jAlert("保存成功!");
+					});
+				}else{
+					jAlert(data.error);
+				}
+					
+			}
+		})
+		return false;
+	});
+</script>

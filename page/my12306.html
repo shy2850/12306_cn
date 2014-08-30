@@ -1,0 +1,362 @@
+$belong[frame.html]
+	<div class="my12306">
+		<div class="crumbs">
+			您现在的位置是：<a href="index.html">客运首页</a>&nbsp;>&nbsp;
+			<strong>我的12306</strong>
+		</div>
+		<div class="sidebar">
+			<div class="layout my">
+				<div class="lay-hd">我的12306</div>
+				<div class="lay-bd">
+					<dl id="href-tabs">
+						<dt>我的火车票</dt>
+						<dd><a href="#unOrders">未完成订单</a></dd>
+						<dd><a href="#Orders">已完成订单(改/退)</a></dd>
+						<dt>个人信息</dt>
+						<dd><a href="register.html?update=true" class="normal-href">修改个人信息</a></dd>
+						<dt>常用信息管理</dt>
+						<dd class="last"><a href="#commContact" >常用联系人</a></dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+		<div class="main">
+			<div class="layout" style="display:block;">
+				<div class="lay-hd">系统信息</div>
+				<div class="lay-bd">
+					<h3><span style="color:#0a0;" id="user_login_name"></span> 欢迎来到个人信息中心</h3>
+					<p style="text-align:center;">欢迎您登录中国铁路客户服务中心网站。如果您需要预订车票，请您点击<a href="cpyd.html" style="color:#00f;">车票预订</a>。</p>
+				</div>
+			</div>
+			<div class="layout" id="unOrders">
+				<div class="lay-hd">未完成订单</div>
+				<div class="lay-bd"></div>
+			</div>
+			<div class="layout" id="Orders">
+				<div class="lay-hd">已完成订单(改/退)</div>
+				<div class="lay-bd"></div>
+			</div>
+			<div class="layout" id="commContact">
+				<div class="lay-hd">常用联系人</div>
+				<div class="lay-bd">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--订单列表-->
+<script type="html/tmpl" id="tmpl-list" data-type="jsonp" data-url="http://localhost:8080/12306_cn/orderAction$list">
+	<table class="table" style="text-align:center;">
+		<tr>
+			<th>序号</th>
+			<th>订单号</th>
+			<th>车次信息</th>
+			<th>席位类别</th>
+			<th>旅客姓名</th>
+			<th>金额</th>
+			<th>车票状态</th>
+			<th>操作</th>
+		</tr>
+		{{#if info.length}}
+		{{#each info}}
+		<tr>
+			<td>{{@index}}</td>
+			<td>{{order_no}}</td>
+			<td>{{start_time}}开 {{checi}}  {{start_station}}-{{end_station}}</td>
+			<td>{{seat_type}}</td>
+			<td>{{name}}</td>
+			<td>{{price}}￥</td>
+			<td>{{status}}</td>
+			<td>
+				<a href="javascript:void(0);" class="exec fm-button" data-price="{{price}}" data-id="{{id}}">{{exec}}</a>
+			</td>
+		</tr>
+		{{/each}}
+		{{else}}
+		<tr>
+			<td colspan="8">无数据</td>
+		</tr>
+		{{/if}}
+	</table>
+</script>
+
+
+<!--常用联系人列表-->
+<script type="html/tmpl" id="tmpl-commContact" data-target="#commContact .lay-bd" data-type="jsonp" data-url="http://localhost:8080/12306_cn/contactAction$list">
+	<table class="table" style="text-align:center;">
+		<tr>
+			<th>序号</th>
+			<th>姓名</th>
+			<th>身份证号</th>
+			<th>联系电话</th>
+			<th>操作</th>
+		</tr>
+		{{#if info.length}}
+		{{#each info}}
+		<tr>
+			<td>{{@index}}</td>
+			<td>{{name}}</td>
+			<td>{{id_card}}</td>
+			<td>{{tel}}</td>
+			<td>
+				<a href="javascript:void(0);" class="del" data-id="{{id}}" data-name="{{name}}">删除</a>
+			</td>
+		</tr>
+		{{/each}}
+		{{else}}
+		<tr>
+			<td colspan="5">无数据</td>
+		</tr>
+		{{/if}}
+		<tr><td colspan="5"> <a href="javascript:void(0);" class="add fm-button btn-add">添加</a> </td></tr>
+	</table>
+</script>
+
+<script>
+	window.needLogin = true;
+	require(['requestAFrame'],function(R){
+		var user_login_name = $("#user_login_name");
+		R.addTimeout('user_login_name',function(){
+			if(window.loginUser){
+				user_login_name.html(window.loginUser.name);
+			}
+		},200,10);
+	});
+
+	var seat_map = {
+		'swz_num': '商务座',
+		'td_num': '特等座',
+		'yd_num': '一等座',
+		'ed_num': '二等座',
+		'gr_num': '高级',
+		'rw_num': '软卧',
+		'yw_num': '硬卧',
+		'rz_num': '软座',
+		'yz_num': '硬座',
+		'wz_num': '无座'
+	};
+	//常用联系人列表
+	function refreshList(tab){
+		require(['template-init'],function(TI){
+			switch(tab){
+				case '#unOrders':
+					TI.init({		//未完成订单
+						tmpl: '#tmpl-list',
+						target: '#unOrders .lay-bd',
+						sourceData:function(){
+							return {
+								status:0
+							};
+						},
+						begin:function(o){
+							var list = o.source.info;
+							var l = [];
+							for (var i = 0; i < list.length; i++) {
+								var t = list[i];
+								l.push({
+									id : t[0],
+									order_no : t[1],
+									uid : t[2],
+									tid : t[3],
+									cid : t[4],
+									o_date: t[5].substring(0,10),
+									price: t[6],
+									seat_type: seat_map[ t[7] ],
+									status: t[8] ? '已支付' : '未支付',
+									checi: t[9],
+									start_station: station_names_map[t[10]].zh_name,
+									end_station: station_names_map[t[11]].zh_name,
+									start_time: t[12],
+									arrive_time: t[13],
+									name: t[14],
+									exec: '支付'
+								});
+							};
+							o.source.info = l;
+						}
+					});
+					break;
+				case '#Orders':
+					TI.init({ //已完成订单
+						tmpl: '#tmpl-list',
+						target: '#Orders .lay-bd',
+						sourceData:function(){
+							return {
+								status:1
+							};
+						},
+						begin:function(o){
+							var list = o.source.info;
+							var l = [];
+							for (var i = 0; i < list.length; i++) {
+								var t = list[i];
+								l.push({
+									id : t[0],
+									order_no : t[1],
+									uid : t[2],
+									tid : t[3],
+									cid : t[4],
+									o_date: t[5].substring(0,10),
+									price: t[6],
+									seat_type: seat_map[ t[7] ],
+									status: t[8] ? '已支付' : '未支付',
+									checi: t[9],
+									start_station: station_names_map[t[10]].zh_name,
+									end_station: station_names_map[t[11]].zh_name,
+									start_time: t[12],
+									arrive_time: t[13],
+									name: t[14],
+									exec: '退票'
+								});
+							};
+							o.source.info = l;
+						}
+					});
+					break;
+				case '#commContact':
+					TI.init({
+						tmpl: '#tmpl-commContact'
+					});
+					break;
+			}
+					
+		});
+	};
+
+	//tab切换
+	$('#href-tabs a').not('.normal-href').on('click',function(){
+		var id = $(this).attr('href');
+		$( id ).show().siblings().hide();
+		refreshList(id);
+	});
+	$('#href-tabs a[href="'+location.hash+'"]' ).trigger('click');
+
+
+		
+
+	require(['alerts'],function(){
+
+		//添加联系人
+		$('#commContact').on('click','.add',function(){
+
+			jConfirm(
+				'<ul class="form-dialog">'+
+				'	<li>'+
+				'		<label>联系人姓名:</label>'+
+				'		<input class="con_name"/>'+
+				'	</li>'+
+				'	<li>'+
+				'		<label>性别:</label>'+
+				'		<select class="sex"><option value="1">男</option><option value="0">女</option></select>'+
+				'	</li>'+
+				'	<li>'+
+				'		<label>身份证号:</label>'+
+				'		<input class="id_card"/>'+
+				'	</li>'+
+				'	<li>'+
+				'		<label>联系方式:</label>'+
+				'		<input class="tel"/>'+
+				'	</li>'+
+				'	<li>'+
+				'		<label>email:</label>'+
+				'		<input class="email"/>'+
+				'	</li>'+
+				'</ul>',
+				'新增联系人',{
+					okButton : "新增",
+					cancelButton : "取消"
+				},function(result){
+					var _this = $('.form-dialog');
+					if(result){
+						$.ajax({
+							url:'http://localhost:8080/12306_cn/contactAction$add',
+							data:{
+								'contact.name': $('.con_name',_this).val(),
+								'contact.sex': $('.sex',_this).val(),
+								'contact.id_card': $('.id_card',_this).val(),
+								'contact.tel': $('.tel',_this).val(),
+								'contact.email': $('.email',_this).val(),
+								id:"-1"								
+							},
+							dataType:'jsonp',
+							success:function(data){
+								if(data.success){
+									$.alerts._hide();
+									refreshList('#commContact');
+								}else{
+									alert( data.error );
+								}
+							}
+						});
+						return false;
+					}
+				}
+			);
+		});
+		//删除联系人
+		$('#commContact').on('click','.del',function(){
+			var _t = $(this), name = _t.data('name'),id = _t.data('id');
+			jConfirm('确定删除联系人'+name+'?','删除联系人',function(r){
+				if(r){
+					$.ajax({
+						url:'http://localhost:8080/12306_cn/contactAction$delete?id='+id,
+						dataType:'jsonp',
+						success:function(data){
+							if( data.success ){
+								jTip('删除成功！');
+								refreshList('#commContact');
+							}else{
+								jAlert(data.error);
+							}
+						}
+					});
+				}
+			});
+		});
+
+		//支付
+		$('#unOrders').on('click','.exec',function(){
+			var _t = $(this), id = _t.data('id'), price = _t.data('price');
+			jConfirm('确定支付'+price+'￥票价?','票价支付',function(r){
+				if(r){
+					$.ajax({
+						url:'http://localhost:8080/12306_cn/orderAction$pay?id='+id,
+						dataType:'jsonp',
+						success:function(data){
+							if( data.success ){
+								jTip('支付成功！');
+								refreshList('#unOrders');
+							}else{
+								jAlert(data.error);
+							}
+						}
+					});
+				}
+			});
+		});
+
+		//订单删除
+		$('#Orders').on('click','.exec',function(){
+			var _t = $(this), id = _t.data('id');
+			jConfirm('确定删除?','删除订单',function(r){
+				if(r){
+					$.ajax({
+						url:'http://localhost:8080/12306_cn/orderAction$delete?id='+id,
+						dataType:'jsonp',
+						success:function(data){
+							if( data.success ){
+								jTip('删除订单成功！');
+								refreshList('#Orders');
+							}else{
+								jAlert(data.error);
+							}
+						}
+					});
+				}
+			});
+		});
+
+	});
+
+</script>
